@@ -1,4 +1,4 @@
-# Spothiefy - import playlist to Spotify
+# Spothiefy - import playlists to Spotify
 
 Tool for exporting playlists from [Yandex.Music](https://music.yandex.ru/) to [Spotify](https://spotify.com).
 
@@ -18,11 +18,11 @@ out of the box so it doesn't work right now and probably never will.
 
 ## Installation
 
-Python 3 was used to develop this tool therefor it is **required** to be installed before going any further.
+Python 3 was used to develop this tool, therefore it is **required** to be installed before going any further.
 
 
 ### Clone repository and prepare environment:
-####  
+  
 ```shell
 $ git clone https://bitbucket.org/gudvinr/spothiefy.git
 $ cd spothiefy/
@@ -51,7 +51,7 @@ It will help to avoid unnecessary authentification in case of failures.
 ### Run
 
 To launch transfer procedure:
-####  
+  
 ```
 (.venv) $ python spothiefy.py config.ini # you may add -v to debug problems
 ```
@@ -60,3 +60,14 @@ It will then proceed to login into Spotify and open browser to confirm permissio
 Downloading tracks meta information from Yandex.Music is quite lengthy process since done one after another.  
 
 During import there will be messages indicating problems with finding tracks on Spotify which may be solved only manually.
+
+
+## License
+  
+```
+This Project is subject to the terms of the Mozilla Public License, v. 2.0.
+If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+
+Copyright (c) 2020, gudvinr
+```

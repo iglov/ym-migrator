@@ -19,6 +19,7 @@ config = configparser.ConfigParser()
 parser = argparse.ArgumentParser(description='Spothify: Import favorite tracks and playlists to Spotify')
 parser.add_argument('config', metavar='CONFIG', default='config.ini', type=str, nargs=1, help='path to config.ini')
 parser.add_argument('-e', '--export', type=str, nargs=1, choices=['ym', 'deezer'], help='provider to use on conflict')
+parser.add_argument('-d', '--dry-run', const=True, default=False, nargs='?', help='just export without touching anything')
 parser.add_argument('-v', '--verbose', action='count', default=0)
 
 args = parser.parse_args()
@@ -57,19 +58,17 @@ if len(pdict) > 1 and not args.export:
     parser.print_help()
     exit(-2)
 
-name = config.export
-if len(pdict) == 1:
-    name = next(iter(pdict))
+name = args.export if len(pdict) > 1 else next(iter(pdict))
 
 provider = pdict[name]
 
 
 # import tracks
 logging.info('import favorites')
-sp.import_favorites(provider.favorites)
+sp.import_favorites(provider.favorites, dry_run=args.dry_run)
 
 for pl in provider.playlists:
     logging.info(f'import playlist: {pl.title}')
-    sp.import_playlist(pl)
+    sp.import_playlist(pl, dry_run=args.dry_run)
 
 input("Import finished. Press Enter to close window.")

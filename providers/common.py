@@ -51,6 +51,6 @@ class MusicProvider:
     favorites = property(lambda self: self.__favorites)
     playlists = property(lambda self: self.__playlists)
 
-    def __init__(self, favorites=[], playlists=[]):
+    def __init__(self, favorites=None, playlists=None):
         self.__favorites = favorites
         self.__playlists = playlists

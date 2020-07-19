@@ -115,7 +115,7 @@ class Spotify(MusicProvider):
 
         return tracks
 
-    def import_playlist(self, playlist):
+    def import_playlist(self, playlist, dry_run=False):
         tracks = self.__search_tracks(playlist)
 
         if len(tracks) < len(playlist):
@@ -125,8 +125,12 @@ class Spotify(MusicProvider):
 
             logging.warn(f'less tracks found for playlist ({len(tracks)} of {len(playlist)}): {playlist.title}')
 
-        result = self.__client.user_playlist_create(self.__user_id, playlist.title, playlist.is_public)
-        playlist_id = result['id']
+        playlist_id = None
+        if dry_run:
+            logger.info('DRY RUN. IMPORT NOT ENABLED.')
+        else:
+            result = self.__client.user_playlist_create(self.__user_id, playlist.title, playlist.is_public)
+            playlist_id = result['id']
 
         if len(tracks) == 0:
             logging.warn(f'playlist is empty: {playlist.title}')
@@ -135,9 +139,13 @@ class Spotify(MusicProvider):
         fat_list = list(chunk(tracks, Spotify.__id_chunk_size))
         for i, slim in enumerate(fat_list):
             logger.debug(f'adding tracks: {i+1} of {len(fat_list)}')
+            if dry_run:
+                logger.info('DRY RUN. IMPORT NOT ENABLED.')
+                continue
+
             self.__client.user_playlist_add_tracks(self.__user_id, playlist_id, [t.track_id for t in slim])
 
-    def import_favorites(self, playlist):
+    def import_favorites(self, playlist, dry_run=False):
         tracks = self.__search_tracks(playlist)
 
         if len(tracks) < len(playlist):
@@ -154,4 +162,8 @@ class Spotify(MusicProvider):
         fat_list = list(chunk(tracks, Spotify.__id_chunk_size))
         for i, slim in enumerate(fat_list):
             logger.debug(f'adding tracks: {i+1} of {len(fat_list)}')
+            if dry_run:
+                logger.info('DRY RUN. IMPORT NOT ENABLED.')
+                continue
+
             self.__client.current_user_saved_tracks_add([t.track_id for t in slim])

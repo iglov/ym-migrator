@@ -10,7 +10,7 @@ logger = logging.getLogger('ym')
 class DeezerTrack(Track):
 
     def __init__(self, track):
-        logger.debug(f'create track: {track.title} - {track.artist.name}')
+        logger.debug(f'create track: {track.title}')
 
         super().__init__(
             track.title,

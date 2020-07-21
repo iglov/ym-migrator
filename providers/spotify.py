@@ -18,7 +18,7 @@ class SpotifyTrack(Track):
     track_id = property(lambda self: self.__track_id)
 
     def __init__(self, track):
-        logger.debug(f'create track {track["id"]}: {track["name"]} - {track["artists"][0]["name"]}')
+        logger.debug(f'create track {track["id"]}: {track["name"]}')
 
         self.__track_id = track['id']
 

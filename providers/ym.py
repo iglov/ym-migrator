@@ -11,7 +11,7 @@ logger = logging.getLogger('ym')
 class YandexTrack(Track):
 
     def __init__(self, full_track):
-        logger.debug(f'create track {full_track.id}: {full_track.title} - {full_track.artists[0].name}')
+        logger.debug(f'create track {full_track.id}: {full_track.title}')
 
         super().__init__(
             full_track.title,

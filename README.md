@@ -28,7 +28,7 @@ $ git clone https://bitbucket.org/gudvinr/spothiefy.git
 $ cd spothiefy/
 $ python -m venv .venv
 $ source .venv/bin/activate  # or .venv\Scripts\activate.[bat|ps1] on Windows
-(.venv) $ pip install -r requirement.txt
+(.venv) $ pip install -r requirements.txt
 ```
 
 

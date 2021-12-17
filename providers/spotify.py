@@ -30,7 +30,8 @@ class SpotifyTrack(Track):
 
 
 class Spotify(MusicProvider):
-    __scope = 'playlist-modify-private user-library-modify'
+#    __scope = 'playlist-modify-private user-library-modify'
+    __scope = 'playlist-modify-private user-library-modify user-library-read ugc-image-upload user-read-playback-state user-modify-playback-state user-read-private user-follow-modify user-follow-read streaming user-read-playback-position playlist-read-collaborative app-remote-control user-read-email playlist-read-private user-top-read playlist-modify-public user-read-currently-playing user-read-recently-played'
     __cache_path = '.spotify-cache'
     __id_chunk_size = 50
 

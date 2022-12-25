@@ -1,15 +1,10 @@
 import logging
-
 from yandex_music.client import Client
-
 from .common import MusicProvider, Playlist, Track
-
 
 logger = logging.getLogger('ym')
 
-
 class YandexTrack(Track):
-
     def __init__(self, full_track):
         logger.debug(f'create track {full_track.id}: {full_track.title}')
 
@@ -19,9 +14,7 @@ class YandexTrack(Track):
             [album.title for album in full_track.albums],
         )
 
-
 class YandexPlaylist(Playlist):
-
     def __init__(self, title, tracks, visibility='private'):
         logger.debug(f'create playlist ({visibility}): {title}')
 
@@ -31,10 +24,8 @@ class YandexPlaylist(Playlist):
             visibility == 'public'
         )
 
-
 class YandexMusic(MusicProvider):
     __cache_path = '.ym-cache'
-
     token = property(lambda self: self.__client.token)
     login = property(lambda self: self.__client.me.account.login)
 
@@ -64,7 +55,7 @@ class YandexMusic(MusicProvider):
         logger.info(f'logged in: {login}')
 
         pl = self.__client.users_likes_tracks()
-        favorites = YandexPlaylist('user likes', pl.tracks)
+        favorites = YandexPlaylist('user likes', pl)
 
         logger.debug('loaded user favorites')
 

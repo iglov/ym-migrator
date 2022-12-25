@@ -2,3 +2,4 @@ requests==2.22.0
 spotipy==2.13.0
 deezer-python==1.5.0
 yandex-music==0.1.2
+ytmusicapi==0.22.0

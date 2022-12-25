@@ -1,4 +1,5 @@
-
+lib*
+bin/
 .venv/
 .vscode/
 .idea/
@@ -6,3 +7,6 @@ __pycache__/
 
 .*-cache
 *.ini
+*.log
+*.json
+*.cfg

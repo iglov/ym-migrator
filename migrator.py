@@ -13,7 +13,7 @@ config = configparser.ConfigParser()
 
 parser = argparse.ArgumentParser(description='Just another one script for migration music library')
 parser.add_argument('-c', '--config', metavar='CONFIG', required=True, type=str, nargs=1, help='path to config.ini')
-parser.add_argument('-i', '--import', metavar='IMPORT', required=True, dest='_import', type=str, nargs=1, choices=['spotify', 'youtube'], help='Where we will migrate our library?')
+parser.add_argument('-i', '--import', required=True, dest='_import', type=str, nargs=1, choices=['spotify', 'youtube'], help='Where we will migrate our library?')
 parser.add_argument('-e', '--export', type=str, nargs=1, choices=['ym', 'deezer'], help='provider to use on conflict')
 parser.add_argument('-d', '--dry-run', const=True, default=False, nargs='?', help='just export without touching anything')
 parser.add_argument('-v', '--verbose', action='count', default=0)
